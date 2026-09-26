@@ -1,0 +1,43 @@
+/* App global styles */
+
+:root {
+  --primary-color: #333333;
+  --background-dark: #0d1117;
+  --surface-color: #1a1a1a;
+  --text-primary: #d0d0d0;
+  --text-secondary: #a0a0a0;
+  --border-color: #333333;
+  --success-color: #4ade80;
+  --error-color: #ff6b6b;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #444444;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+/* Selection styling */
+::selection {
+  background: #333333;
+  color: #e0e0e0;
+}
+
+::-moz-selection {
+  background: #333333;
+  color: #e0e0e0;
+}
+
