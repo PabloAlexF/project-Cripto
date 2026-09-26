@@ -81,7 +81,8 @@ export function Home(){
             })
             
             // console.log(formatedResult)
-            setCoins(formatedResult)
+            const listCoins = [...coins, ...formatedResult]
+            setCoins(listCoins);
 
         } catch (error) {
             console.log(`Erro de requisição detectado, ERRO: ${error}`)
