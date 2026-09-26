@@ -31,17 +31,28 @@ export function Home(){
 
     const [input, setInput] = useState("");
     const [coins, setCoins] = useState<coinProps[]>([])
+    const [offset, setOffset] = useState(0)
 
     const navigate = useNavigate();
-
+    
     useEffect(() => {
-      getData()
-    }, [])
+        getData()
+    }, [offset])
+    
+    function handleGetMore(){
+        if(offset === 0) {
+            setOffset(10);
+            return;
+        }
+        setOffset(offset + 10);
+        
+    }
+
 
     async function getData(){
         try {
-            
-            const response = await fetch("https://rest.coincap.io/v3/assets?limit=10&offset=0&apiKey=f7a0addf327cf9c488ac8e70c660782e374e57009bc6c9efa218db84dd4cfcdd");
+            const apiKey = import.meta.env.VITE_API_KEY;
+            const response = await fetch(`https://rest.coincap.io/v3/assets?limit=10&offset=${offset}&apiKey=${apiKey}`);
             if(!response.ok) {
                 throw new Error("Erro na requisição!");
             }
@@ -89,9 +100,6 @@ export function Home(){
         }
     }
 
-    function handleGetMore(){
-
-    }
 
     return(
         <>
@@ -126,6 +134,7 @@ export function Home(){
                             <tr key={item.id} className={styles.tr}>
                             <td data-label="Moeda" className={styles.td}>
                                 <div className={styles.name}>
+                                    <img className={styles.logoIcons} src={`https://assets.coincap.io/assets/icons/${item.symbol.toLocaleLowerCase()}@2x.png`} alt="" />
                                     <Link to={`/detail/${item.id}`}><span>{item.name}</span> | {item.symbol}</Link>
                                 </div>
                             </td>
